@@ -2,7 +2,7 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.autowriteall=true
-vim.opt.wrap=true
+vim.opt.wrap=false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.softtabstop = 2
@@ -12,6 +12,7 @@ vim.opt.updatetime = 300
 vim.opt.writebackup = false
 vim.opt.autochdir=true
 vim.opt.hidden=true
+vim.opt.laststatus=2
 
 
 -- navigate splits
@@ -29,22 +30,45 @@ vim.keymap.set('n', '<right>', ':vertical resize +2<cr>', {silent=true})
 -- insert an empty line
 vim.keymap.set('n', '<c-o>', 'i<cr><esc>0', {silent=true})
 
+-- show list in buffer to select
+vim.keymap.set('n', '<Leader>b', ':ls<CR>:b<Space>', {silent=true})
+vim.keymap.set('n', '<Tab>',':b#<CR>', {silent=true})
+
+
+
+-- Explore files
+vim.keymap.set('n', '<Leader>e', ':E<CR>', {silent=true})
+
+-- conflict with splitnavigation
+-- vim.keymap.set('n', '<c-h>',':bn<CR>', {silent=true})
+-- vim.keymap.set('n', '<c-j>',':bp<CR>', {silent=true})
+
 -- replace current word with contents of paste buffer
 vim.keymap.set('n', '<c-p>', '"_cw"<esc>', {silent=true})
 
-
 -- file shortcuts
-vim.keymap.set('n', '<leader>v', '<cmd>e  ~/.config/nvim/init.lua<cr>', {silent=true})
+vim.keymap.set('n', '<leader>v', '<cmd>e  ~/AppData/Local/nvim/init.lua<cr>', {silent=true})
 vim.keymap.set('n', '<leader>wk', '<cmd>e ~/personal/career/google.md<cr>', {silent=true})
 vim.keymap.set('n', '<leader>wj', '<cmd>e ~/personal/journal.md<cr>', {silent=true})
+
+-- python comments
+vim.keymap.set('n', ',c', ':s/^/#<CR>:noh<CR>', {silent=true})
+vim.keymap.set('n', ',x', ':s/^#//<CR>:noh<CR>', {silent=true})
+
 
 -- stay at current word when using star search
 vim.keymap.set('n', '*', function() vim.fn.setreg('/', vim.fn.expand('<cword>')) end, {silent=true})
 
 vim.keymap.set('v','//','y/<C-R>"<CR>', {silent=true})
 
+-- save on focuslost
+-- :au FocusLost * silent! wa
+-- :au FocusLost * echo "Focustlost"
+
 -- allow the . to execute once for each line of a visual selection
 vim.keymap.set('v', '.', ':normal .<CR>')
+-- "allow macro to execute once for each line of a visual selection
+-- xnoremap Q :'<,'>:normal @q<CR>
 
 -- Install lazy.Nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

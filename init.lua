@@ -37,7 +37,7 @@ vim.keymap.set('n', '<Tab>',':b#<CR>', {silent=true})
 
 
 -- Explore files
-vim.keymap.set('n', '<Leader>e', ':E<CR>', {silent=true})
+vim.keymap.set('n', '<Leader>e', ':Ex<CR>', {silent=true})
 
 -- conflict with splitnavigation
 -- vim.keymap.set('n', '<c-h>',':bn<CR>', {silent=true})
